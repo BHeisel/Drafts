@@ -8,7 +8,7 @@
 
 ### Overview
 
-CenturyLink Cloud dedicated Load Balancer provisioned in a customer's environment are customer managed devices, which includes management of the vendor license. Dedicated Load Balancers are typically provisioned with a license with an expiration date of one year. An expired license may impact functionality of the Load Balancer. To obtain a new license a [Support Request](../Support/how-do-i-report-a-support-issue.md) should be submitted.
+CenturyLink Cloud dedicated Load Balancers provisioned in a customer's environment are customer managed devices, which includes management of the vendor license. Dedicated Load Balancers are typically provisioned with a license with an expiration date of one year. An expired license may impact functionality of the Load Balancer. To obtain a new license a [Support Request](../Support/how-do-i-report-a-support-issue.md) should be submitted.
 
 ### Audience
 
@@ -26,7 +26,7 @@ The Netscaler Load Balancer uses FlexLM licensing to license features on the pro
 
 #### How to determine if a VPX is not passing traffic due to an expired license
 
-##### CLI method
+#### CLI method
 
 1. SSH or use PuTTY on Windows to login to VPX management IP 
 2. In the CLI run:
@@ -35,12 +35,38 @@ The Netscaler Load Balancer uses FlexLM licensing to license features on the pro
  ```
 3. Review the output.  If the Model Number ID lists 1 instead of the proper model and the Load Balancing feature says NO, the license is expired.  The Model ID should read the correct model (ie: 200) and the Load Balancing feature should say YES.
 
-##### GUI method
+#### GUI method
 
-Open a browser and login to the VPX management IP.  Firefox works well with the VPX.
-On the left hand side menu, navigate to System->Licenses
-Review output.  If the Model ID lists 1 instead of the proper model and the Load Balancing feature does not have a green checkmark, you have an expired license.  The Model ID should reflect the correct model (ie: 200) and the Load Balancing feature should have a green checkmark.
+1. Open a browser and login to the VPX management IP.
+2. On the left hand side menu, navigate to System->Licenses
+3. Review output.  If the Model ID lists 1 instead of the proper model and the Load Balancing feature does not have a green checkmark, you have an expired license.  The Model ID should reflect the correct model (ie: 200) and the Load Balancing feature should have a green checkmark.
 
+### Determine the License Expiration Date
+
+**Note:** This step can only be performed via SSH and the CLI. The license expiration date in not available in the GUI
+
+1. SSH or use PuTTY on Windows to login to the VPX management IP
+2. In the CLI, type the command word shell to get to a unix shell prompt
+```
+  shell
+  ```
+3. Review the /var/log/license.log file to determine the location and filename of the license file in use.
+```
+  cat /var/log/license.log | grep -v lmgrd  | grep "License file"
+  ```
+4. The license file should be in the /nsconfig/license directory.  You can list the license.log file to determine when was the last time the VPX ran the license daemon to check the license.
+```
+  ls -la /var/log/license.log
+  ```
+5. Navigate to the /nsconfig/license directory.
+```
+  cd /nsconfig/license
+  ```
+6. Review the file listed as the license file obtained in step 3.  This example uses the license file named license.lic.
+```
+  cat license.lic | grep INCREMENT
+  ```
+7. Observe the lines in the file that start with the word **INCREMENT** in all capital letters.  This line contains the license expiration date.
 
 ### Notes
 
