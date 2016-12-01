@@ -48,27 +48,27 @@ The Netscaler Load Balancer uses FlexLM licensing to license features on the pro
 
 1. SSH or use PuTTY on Windows to login to the VPX management IP
 2. In the CLI, type the command word shell to get to a unix shell prompt
-```
+ ```
   shell
   ```
   
 3. Review the /var/log/license.log file to determine the location and filename of the license file in use.
-```
+ ```
   cat /var/log/license.log | grep -v lmgrd  | grep "License file"
   ```
   
 4. The license file should be in the /nsconfig/license directory. The license.log file can be listed to determine when was the last time the VPX ran the license daemon to check the license.
-```
+ ```
   ls -la /var/log/license.log
   ```
   
 5. Navigate to the /nsconfig/license directory.
-```
+ ```
   cd /nsconfig/license
   ```
   
 6. Review the file listed as the license file obtained in step 3. This example uses the license file named license.lic.
-```
+ ```
   cat license.lic | grep INCREMENT
   ```
   
