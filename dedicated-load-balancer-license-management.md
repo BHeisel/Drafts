@@ -8,7 +8,7 @@
 
 ### Overview
 
-CenturyLink Cloud dedicated Load Balancers provisioned in a customer's environment are customer managed devices, which includes management of the vendor license. Dedicated Load Balancers are typically provisioned with a license with an expiration date of one year. An expired license may impact functionality of the Load Balancer. To obtain a new license a [Support Request](../Support/how-do-i-report-a-support-issue.md) should be submitted.
+CenturyLink Cloud dedicated Load Balancers provisioned in a customer's environment are customer managed devices, which includes management of the vendor license. Dedicated Load Balancers licenses are typically provisioned with an expiration date of one year. An expired license may impact functionality of the Load Balancer. To obtain a new license a [Support Request](../Support/how-do-i-report-a-support-issue.md) should be submitted.
 
 ### Audience
 
