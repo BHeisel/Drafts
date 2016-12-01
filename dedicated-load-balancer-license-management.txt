@@ -33,13 +33,13 @@ The Netscaler Load Balancer uses FlexLM licensing to license features on the pro
  ```
   show ns license
  ```
-3. Review the output.  If the Model Number ID lists 1 instead of the proper model and the Load Balancing feature says NO, the license is expired.  The Model ID should read the correct model (ie: 200) and the Load Balancing feature should say YES.
+3. Review the output. If the Model Number ID lists 1 instead of the proper model and the Load Balancing feature says NO, the license is expired. The Model ID should read the correct model (ie: 200) and the Load Balancing feature should say YES.
 
 #### GUI method
 
 1. Open a browser and login to the VPX management IP.
 2. On the left hand side menu, navigate to System->Licenses
-3. Review output.  If the Model ID lists 1 instead of the proper model and the Load Balancing feature does not have a green checkmark, you have an expired license.  The Model ID should reflect the correct model (ie: 200) and the Load Balancing feature should have a green checkmark.
+3. Review output. If the Model ID lists 1 instead of the proper model and the Load Balancing feature does not have a green checkmark, the license is expired. The Model ID should reflect the correct model (ie: 200) and the Load Balancing feature should have a green checkmark.
 
 ### Determine the License Expiration Date
 
@@ -54,7 +54,7 @@ The Netscaler Load Balancer uses FlexLM licensing to license features on the pro
 ```
   cat /var/log/license.log | grep -v lmgrd  | grep "License file"
   ```
-4. The license file should be in the /nsconfig/license directory.  You can list the license.log file to determine when was the last time the VPX ran the license daemon to check the license.
+4. The license file should be in the /nsconfig/license directory. The license.log file can be listed to determine when was the last time the VPX ran the license daemon to check the license.
 ```
   ls -la /var/log/license.log
   ```
@@ -62,15 +62,14 @@ The Netscaler Load Balancer uses FlexLM licensing to license features on the pro
 ```
   cd /nsconfig/license
   ```
-6. Review the file listed as the license file obtained in step 3.  This example uses the license file named license.lic.
+6. Review the file listed as the license file obtained in step 3. This example uses the license file named license.lic.
 ```
   cat license.lic | grep INCREMENT
   ```
-7. Observe the lines in the file that start with the word **INCREMENT** in all capital letters.  This line contains the license expiration date.
+7. Observe the lines in the file that start with the word **INCREMENT** in all capital letters. This line contains the license expiration date.
 
 ### Notes
 
 * Multiple licenses (including expired ones) can be present on the system. The Netscaler will enable all of the proper features from the valid license file.
-* The Netscaler GUI and CLI will display licensing status, they will not display the expiration date. The actual license file must be reviewed to determine the expiration date.
 * A new license can be added to a running Netscaler while it is running with an expired license. Upon restart, the Netscaler will use the new license, resulting in less downtime of the pools.
 * Updating the license on a Netscaler HA pair can be performed without downtime.
