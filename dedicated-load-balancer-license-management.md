@@ -32,7 +32,8 @@ The Netscaler Load Balancer uses FlexLM licensing to license features on the pro
 2. In the CLI run:
  ```
   show ns license
- ```
+  ```
+  
 3. Review the output. If the Model Number ID lists 1 instead of the proper model and the Load Balancing feature says NO, the license is expired. The Model ID should read the correct model (ie: 200) and the Load Balancing feature should say YES.
 
 #### GUI method
